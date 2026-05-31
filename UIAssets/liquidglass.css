@@ -1,0 +1,116 @@
+/* UIAssets/liquidglass.css
+   Standalone Liquid Glass layer for WannUI.
+   Use with UIAssets/liquidglass.js
+*/
+
+.lg-host{
+  overflow:hidden !important;
+  isolation:isolate !important;
+
+  background:rgba(255,255,255,.075) !important;
+
+  backdrop-filter:
+    blur(var(--lg-blur, 22px))
+    saturate(var(--lg-saturate, 170%))
+    contrast(var(--lg-contrast, 108%)) !important;
+
+  -webkit-backdrop-filter:
+    blur(var(--lg-blur, 22px))
+    saturate(var(--lg-saturate, 170%))
+    contrast(var(--lg-contrast, 108%)) !important;
+
+  border:1px solid rgba(255,255,255,var(--lg-border-alpha, .18)) !important;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.42),
+    inset 0 14px 26px rgba(255,255,255,.08),
+    inset 0 -10px 20px rgba(0,0,0,.16),
+    0 18px 42px rgba(0,0,0,.28) !important;
+}
+
+.lg-host:not(.dock){
+  position:relative !important;
+}
+
+.lg-canvas{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  z-index:0 !important;
+  mix-blend-mode:screen;
+  opacity:var(--lg-canvas-opacity, .95);
+}
+
+.lg-host > *:not(.lg-canvas){
+  position:relative;
+  z-index:2;
+}
+
+.lg-host::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:1;
+
+  background:
+    radial-gradient(
+      circle at 18% 10%,
+      rgba(255,255,255,.36),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.16),
+      transparent 45%,
+      rgba(255,255,255,.07)
+    );
+
+  opacity:var(--lg-highlight-opacity, .62);
+}
+
+body.dark-mode .lg-host{
+  background:rgba(255,255,255,.055) !important;
+  border-color:rgba(255,255,255,.13) !important;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.28),
+    inset 0 12px 24px rgba(255,255,255,.055),
+    inset 0 -12px 22px rgba(0,0,0,.24),
+    0 20px 48px rgba(0,0,0,.42) !important;
+}
+
+/* DOCK POSITION FIX */
+.dock.lg-host{
+  position:absolute !important;
+
+  bottom:18px !important;
+  left:50% !important;
+  top:auto !important;
+  right:auto !important;
+
+  transform:translateX(-50%) !important;
+
+  width:90% !important;
+  height:72px !important;
+
+  border-radius:30px !important;
+
+  z-index:90 !important;
+}
+.dock.lg-host{
+  position:absolute !important;
+  bottom:18px !important;
+  left:50% !important;
+  top:auto !important;
+  right:auto !important;
+  transform:translateX(-50%) !important;
+  width:90% !important;
+  height:72px !important;
+  border-radius:30px !important;
+  z-index:90 !important;
+}
