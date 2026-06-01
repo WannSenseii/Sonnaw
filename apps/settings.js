@@ -81,6 +81,14 @@ Login
 <span>›</span>
 </button>
 
+<button class="settings-menu-item liquid" onclick="toggleBacksound()">
+  <div>
+    <h3 id="backsoundSettingTitle">Backsound</h3>
+    <p id="backsoundSettingDesc">Background music is on</p>
+  </div>
+  <span id="backsoundSettingIcon">♪</span>
+</button>
+
 <button class="settings-menu-item liquid danger-setting" onclick="factoryResetPhone()">
 <div>
 <h3>Reset Phone</h3>
