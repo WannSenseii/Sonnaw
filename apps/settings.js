@@ -558,3 +558,33 @@ mode === "3button"
 : "Gesture Navigation";
 
 }
+
+function updateBacksoundSettingText(){
+
+const title =
+document.getElementById("backsoundSettingTitle");
+
+const desc =
+document.getElementById("backsoundSettingDesc");
+
+const icon =
+document.getElementById("backsoundSettingIcon");
+
+const muted =
+localStorage.getItem("wannuiBacksoundMuted") === "true";
+
+if(title){
+title.innerText = muted ? "Backsound Off" : "Backsound On";
+}
+
+if(desc){
+desc.innerText = muted
+? "Tap to turn background music on"
+: "Tap to turn background music off";
+}
+
+if(icon){
+icon.innerText = muted ? "♪̸" : "♪";
+}
+
+}
