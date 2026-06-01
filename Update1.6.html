@@ -9438,7 +9438,7 @@ aria-label="Open App Drawer">
 
 </div><!-- END .screen -->
 
-<script>
+>
 </script>
 
 <script src="./apps/chrome.js"></script>
@@ -14678,6 +14678,100 @@ window.addEventListener("load",()=>{
 initButtonSounds();
 });
 
+/* =========================
+   GLOBAL BACKSOUND
+========================= */
+
+const BACKSOUND_SRC = "./UIAssets/backsound.mp3";
+
+let wannBacksound = null;
+let backsoundStarted = false;
+
+function initBacksound(){
+
+if(wannBacksound) return;
+
+wannBacksound = new Audio(BACKSOUND_SRC);
+wannBacksound.loop = true;
+wannBacksound.preload = "auto";
+wannBacksound.volume = Number(localStorage.getItem("wannuiBacksoundVolume") || "0.28");
+
+}
+
+function playBacksound(){
+
+initBacksound();
+
+if(localStorage.getItem("wannuiBacksoundMuted") === "true") return;
+
+wannBacksound.play()
+.then(()=>{
+backsoundStarted = true;
+console.log("Backsound playing");
+})
+.catch(err=>{
+console.warn("Backsound blocked/failed:", err);
+});
+
+}
+
+function pauseBacksound(){
+
+if(!wannBacksound) return;
+
+wannBacksound.pause();
+backsoundStarted = false;
+
+}
+
+function toggleBacksound(){
+
+initBacksound();
+
+const muted =
+localStorage.getItem("wannuiBacksoundMuted") === "true";
+
+if(muted){
+localStorage.setItem("wannuiBacksoundMuted","false");
+playBacksound();
+showLiveNotif?.("Backsound On");
+}else{
+localStorage.setItem("wannuiBacksoundMuted","true");
+pauseBacksound();
+showLiveNotif?.("Backsound Off");
+}
+
+updateBacksoundSettingText?.();
+
+}
+
+function setBacksoundVolume(value){
+
+initBacksound();
+
+const volume =
+Math.max(0, Math.min(1, Number(value)));
+
+wannBacksound.volume = volume;
+
+localStorage.setItem("wannuiBacksoundVolume", String(volume));
+
+}
+
+/* unlock on first interaction */
+document.addEventListener("pointerdown",()=>{
+
+if(!backsoundStarted){
+playBacksound();
+}
+
+},{once:true});
+
+/* optional: start after entering phone */
+window.addEventListener("load",()=>{
+initBacksound();
+});
+   
 </script>
 
 <script src="./UIAssets/liquidglass.js"></script>
