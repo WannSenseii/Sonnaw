@@ -8992,6 +8992,37 @@ display:none !important;
 display:grid !important;
 }
 
+/* =========================
+   HIDE SCROLLBAR
+========================= */
+
+.screen,
+.app-window,
+.os-app-window,
+.app-content,
+.settings-home,
+.settings-subpage,
+.control-center,
+.app-drawer,
+.drawer-panel{
+  scrollbar-width:none !important;      /* Firefox */
+  -ms-overflow-style:none !important;   /* old Edge */
+}
+
+.screen::-webkit-scrollbar,
+.app-window::-webkit-scrollbar,
+.os-app-window::-webkit-scrollbar,
+.app-content::-webkit-scrollbar,
+.settings-home::-webkit-scrollbar,
+.settings-subpage::-webkit-scrollbar,
+.control-center::-webkit-scrollbar,
+.app-drawer::-webkit-scrollbar,
+.drawer-panel::-webkit-scrollbar{
+  display:none !important;              /* Chrome/Safari */
+  width:0 !important;
+  height:0 !important;
+}
+   
 </style>
 
 <link rel="stylesheet" href="./UIAssets/liquidglass.css">
